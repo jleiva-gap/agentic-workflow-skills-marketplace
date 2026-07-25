@@ -8,7 +8,7 @@
       "name": "agentic-workflow-skills",
       "source": {
         "source": "url",
-        "url": "./plugins/agentic-workflow-skills"
+        "url": "./"
       },
       "policy": {
         "installation": "AVAILABLE",
