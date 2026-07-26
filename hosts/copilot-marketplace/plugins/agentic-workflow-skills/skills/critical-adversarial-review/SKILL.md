@@ -3,7 +3,7 @@ name: "critical-adversarial-review"
 description: "Use when a change needs one pass that checks both acceptance criteria and adversarial failure modes."
 argument-hint: "<story-file> [repo-root] [output-dir] [base-ref] [review-scope] [agent-name] [run-tests] [output-mode] [token-budget]"
 user-invocable: true
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 # critical-adversarial-review
 
@@ -36,7 +36,7 @@ This workflow is useful when the user wants a single, strict review result inste
 4. Challenge the implementation for edge cases, abuse cases, regression paths, and hidden dependencies.
 5. Deduplicate findings that overlap the same root cause.
 6. Keep only actionable, evidence-backed findings.
-7. Report both satisfaction gaps and adversarial risks in a single concise output.
+7. Report both satisfaction gaps and adversarial risks in a single concise output using `templates/review-findings-template.md` or a compatible subset with the same finding fields.
 
 ## Hard rules
 
@@ -44,6 +44,7 @@ This workflow is useful when the user wants a single, strict review result inste
 - Do not duplicate findings that describe the same issue.
 - Do not report speculative risks as confirmed defects.
 - Do not omit evidence when a finding is confirmed.
+- Do not emit duplicate findings for the same failure path; link related IDs instead.
 - Use English for all report content.
 
 ## Expected outputs

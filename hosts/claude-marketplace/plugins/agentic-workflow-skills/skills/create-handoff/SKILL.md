@@ -3,7 +3,7 @@ name: "create-handoff"
 description: "Use when you need to capture the current approved state into a compact cross-tool handoff, usually from a process id, or refresh it after a pause."
 argument-hint: "process_id=<process-id> [plan=<path>] [spec=<path>] [progress=<path>]"
 user-invocable: true
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 # create-handoff
 
@@ -34,7 +34,7 @@ The process id should normally be the approved plan filename stem `YYYY-MM-DD-<s
 3. Read the approved design if present, the approved plan if present, the existing handoff if present, and the progress artifact if present.
 4. Inspect git status, branch, recent commits, and current diff.
 5. Identify the canonical process id, story id, approved artifact paths, baseline commit, and current working tree state.
-6. Find the first genuinely pending task and the last verified command and result.
+6. Find the first genuinely pending task and the last verified task record, command, result, and evidence source.
 7. Extract only the assumptions, risks, blockers, and entrypoint details needed to resume without re-explaining the project.
 8. Write or refresh `docs/superpowers/handoffs/<story-id>-handoff.md` from the bundled `templates/cross-tool-handoff-template.md`.
 9. Keep the handoff short, current, and readable on its own.
@@ -48,6 +48,7 @@ The process id should normally be the approved plan filename stem `YYYY-MM-DD-<s
 - Do not rely on chat history to reconstruct task status.
 - Do not include long rationale that belongs in the spec or plan.
 - Do not add unverified progress.
+- Do not copy full progress history into the handoff; include the first pending task and the latest evidence needed to resume.
 - Do not demand explicit paths when a process id resolves the artifact set unambiguously.
 - Use English for all artifacts, reports, and blocker messages.
 
